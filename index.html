@@ -151,7 +151,7 @@
 
         /* Hero Section */
         .hero {
-            padding: 8rem 0 6rem;
+            padding: 3rem 0 6rem;
             position: relative;
         }
 
@@ -477,15 +477,16 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: calc(-2rem - 5px);
+            left: -2rem;
             top: 0.5rem;
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: transparent;
+            background: var(--bg-primary);
             border: 3px solid var(--accent-primary);
             z-index: 2;
             transition: all 0.3s;
+            transform: translateX(calc(-50% + 1px));
         }
 
         .timeline-item.current::before {
@@ -494,7 +495,7 @@
         }
 
         .timeline-item:hover::before {
-            transform: scale(1.3);
+            transform: translateX(calc(-50% + 1px)) scale(1.3);
             box-shadow: 0 0 0 4px rgba(217, 119, 87, 0.2);
         }
 
@@ -529,7 +530,7 @@
         }
 
         .timeline-item li::before {
-            content: '→';
+            content: '▪';
             position: absolute;
             left: 0;
             color: var(--accent-secondary);
@@ -560,6 +561,10 @@
             transition: color 0.3s;
         }
 
+        .contact-link i {
+            color: #c15a3a;
+        }
+
         .contact-link:hover {
             color: var(--accent-primary);
         }
@@ -572,6 +577,35 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
             color: var(--text-secondary);
+        }
+
+        /* Language Toggle */
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .lang-switch span {
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            transition: all 0.3s;
+        }
+
+        .lang-switch span.active {
+            background: var(--accent-primary);
+            color: #fff;
+        }
+
+        .lang-switch .lang-divider {
+            color: var(--border-color);
+            cursor: default;
+            padding: 0;
         }
 
         /* Responsive */
@@ -605,11 +639,16 @@
         <nav class="container">
             <a href="#" class="logo">ayoub.miane</a>
             <ul class="nav-links">
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#projects" data-en="Projects" data-fr="Projets">Projects</a></li>
+                <li><a href="#skills" data-en="Skills" data-fr="Compétences">Skills</a></li>
+                <li><a href="#experience" data-en="Experience" data-fr="Expérience">Experience</a></li>
+                <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
             </ul>
+            <div class="lang-switch">
+                <span id="lang-en" class="active">EN</span>
+                <span class="lang-divider">|</span>
+                <span id="lang-fr">FR</span>
+            </div>
         </nav>
     </header>
 
@@ -618,22 +657,31 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
-                        <h1>Linux SysAdmin & DevOps Engineer</h1>
-                        <p class="tagline"><span style="color: #c15a3a;">$</span> deploying infrastructure | securing
-                            servers | automating workflows<span
+                        <h1 data-en="Linux SysAdmin & DevOps Engineer"
+                            data-fr="Administrateur Système Linux & Ingénieur DevOps">Linux SysAdmin & DevOps Engineer
+                        </h1>
+                        <p class="tagline"><span style="color: #c15a3a;">$</span> <span
+                                data-en="deploying infrastructure | securing servers | automating workflows"
+                                data-fr="déploiement d'infrastructure | sécurisation de serveurs | automatisation de workflows">deploying
+                                infrastructure | securing
+                                servers | automating workflows</span><span
                                 style="color: #c15a3a; animation: blink 3s infinite;">_</span></p>
-                        <p>I help developers and startups deploy self-hosted applications on DigitalOcean without the
+                        <p data-en="I help developers and startups deploy self-hosted applications on DigitalOcean without the headaches. Specializing in Ghost deployments, secure VPS infrastructure, and DevOps essentials with a focus on security-first practices."
+                            data-fr="J'aide les développeurs et startups à déployer des applications auto-hébergées sur DigitalOcean sans complications. Spécialisé dans les déploiements Ghost, l'infrastructure VPS sécurisée et les essentiels DevOps avec une approche axée sur la sécurité.">
+                            I help developers and startups deploy self-hosted applications on DigitalOcean without the
                             headaches. Specializing in Ghost deployments, secure VPS infrastructure, and DevOps
                             essentials with a focus on security-first practices.</p>
                         <div class="cta-buttons">
-                            <a href="https://blog.miane.tech" class="btn btn-secondary" target="_blank">
+                            <a href="https://blog.miane.tech" class="btn btn-secondary" target="_blank"
+                                data-en="Read My Blog" data-fr="Lire Mon Blog">
                                 Read My Blog
                             </a>
                             <a href="https://www.upwork.com/freelancers/ayoubmiane1" class="btn btn-secondary"
                                 target="_blank">
-                                Upwork
+                                My Upwork
                             </a>
-                            <a href="assets/documents/Ayoub_Miane_CV.pdf" class="btn btn-primary" download>
+                            <a href="assets/documents/Ayoub_Miane_CV.pdf" class="btn btn-primary" download
+                                data-en="Download CV" data-fr="Télécharger CV">
                                 Download CV
                             </a>
                         </div>
@@ -651,55 +699,68 @@
             <div class="container">
                 <div class="stat-item">
                     <span class="stat-number">100%</span>
-                    <span class="stat-label">Job Success</span>
+                    <span class="stat-label" data-en="Job Success" data-fr="Taux de Réussite">Job Success</span>
                     <a href="https://www.upwork.com/freelancers/ayoubmiane1" class="stat-link" target="_blank">
                         <i data-lucide="link"></i> Upwork
                     </a>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">3</span>
-                    <span class="stat-label">Completed Jobs</span>
+                    <span class="stat-label" data-en="Completed Jobs" data-fr="Missions Réalisées">Completed Jobs</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">10</span>
-                    <span class="stat-label">Certifications</span>
+                    <span class="stat-label" data-en="Certifications" data-fr="Certifications">Certifications</span>
                 </div>
             </div>
         </section>
 
         <section id="projects" class="projects">
             <div class="container">
-                <h2 class="section-title">Specializations</h2>
+                <h2 class="section-title" data-en="Specializations" data-fr="Spécialisations">Specializations</h2>
                 <div class="project-grid">
                     <div class="project-card">
-                        <div class="project-type">Ghost Blog Deployments</div>
-                        <h3>Full-Stack Ghost Setup</h3>
+                        <div class="project-type" data-en="Ghost Blog Deployments"
+                            data-fr="Déploiements de Blogs Ghost">Ghost Blog Deployments</div>
+                        <h3 data-en="Full-Stack Ghost Setup" data-fr="Installation Ghost Complète">Full-Stack Ghost
+                            Setup</h3>
                         <div class="project-tech">Ghost · Ubuntu · Nginx · Cloudflare · SSL</div>
-                        <p>Complete Ghost CMS setup on Ubuntu VPS with Nginx reverse proxy, SSL/TLS certificates,
+                        <p data-en="Complete Ghost CMS setup on Ubuntu VPS with Nginx reverse proxy, SSL/TLS certificates, Cloudflare CDN integration, automated backups and monitoring, plus custom domain configuration."
+                            data-fr="Installation complète de Ghost CMS sur VPS Ubuntu avec reverse proxy Nginx, certificats SSL/TLS, intégration CDN Cloudflare, sauvegardes automatisées et monitoring, plus configuration de domaine personnalisé.">
+                            Complete Ghost CMS setup on Ubuntu VPS with Nginx reverse proxy, SSL/TLS certificates,
                             Cloudflare CDN integration, automated backups and monitoring, plus custom domain
                             configuration.</p>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-type">VPS Infrastructure</div>
-                        <h3>Secure Server Deployment</h3>
+                        <div class="project-type" data-en="VPS Infrastructure" data-fr="Infrastructure VPS">VPS
+                            Infrastructure</div>
+                        <h3 data-en="Secure Server Deployment" data-fr="Déploiement Serveur Sécurisé">Secure Server
+                            Deployment</h3>
                         <div class="project-tech">DigitalOcean · Nginx · UFW · Fail2ban · Let's Encrypt</div>
-                        <p>DigitalOcean droplet provisioning with security hardening, Nginx web server setup, SSL
+                        <p data-en="DigitalOcean droplet provisioning with security hardening, Nginx web server setup, SSL automation with Let's Encrypt, firewall configuration (UFW, fail2ban), and SSH key authentication."
+                            data-fr="Provisionnement de droplets DigitalOcean avec renforcement sécurité, configuration serveur web Nginx, automatisation SSL avec Let's Encrypt, configuration pare-feu (UFW, fail2ban) et authentification par clé SSH.">
+                            DigitalOcean droplet provisioning with security hardening, Nginx web server setup, SSL
                             automation with Let's Encrypt, firewall configuration (UFW, fail2ban), and SSH key
                             authentication.</p>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-type">DevOps Essentials</div>
-                        <h3>Production-Ready Deployments</h3>
+                        <div class="project-type" data-en="DevOps Essentials" data-fr="Essentiels DevOps">DevOps
+                            Essentials</div>
+                        <h3 data-en="Production-Ready Deployments" data-fr="Déploiements Prêts pour la Production">
+                            Production-Ready Deployments</h3>
                         <div class="project-tech">Docker · MySQL · PostgreSQL · Git · Monitoring</div>
-                        <p>Docker and Docker Compose deployments, automated backup solutions, server monitoring and
+                        <p data-en="Docker and Docker Compose deployments, automated backup solutions, server monitoring and alerting, database administration, and application deployment pipelines."
+                            data-fr="Déploiements Docker et Docker Compose, solutions de sauvegarde automatisées, monitoring serveur et alertes, administration de bases de données et pipelines de déploiement.">
+                            Docker and Docker Compose deployments, automated backup solutions, server monitoring and
                             alerting, database administration, and application deployment pipelines.</p>
                     </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 3rem;">
-                    <a href="https://github.com/m1youb" class="btn btn-secondary" target="_blank">View More on GitHub
+                    <a href="https://github.com/m1youb" class="btn btn-secondary" target="_blank"
+                        data-en="View More on GitHub →" data-fr="Voir Plus sur GitHub →">View More on GitHub
                         →</a>
                 </div>
             </div>
@@ -707,11 +768,12 @@
 
         <section id="skills" class="skills">
             <div class="container">
-                <h2 class="section-title">Technical Stack</h2>
+                <h2 class="section-title" data-en="Technical Stack" data-fr="Stack Technique">Technical Stack</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
                         <h3><i data-lucide="server"
-                                style="width: 16px; height: 16px; display: inline-block; margin-right: 8px;"></i>Infrastructure
+                                style="width: 16px; height: 16px; display: inline-block; margin-right: 8px;"></i><span
+                                data-en="Infrastructure" data-fr="Infrastructure">Infrastructure</span>
                         </h3>
                         <div class="skill-list">
                             <span class="skill-tag">Ubuntu</span>
@@ -725,8 +787,9 @@
 
                     <div class="skill-category">
                         <h3><i data-lucide="globe"
-                                style="width: 16px; height: 16px; display: inline-block; margin-right: 8px;"></i>Web
-                            Services</h3>
+                                style="width: 16px; height: 16px; display: inline-block; margin-right: 8px;"></i><span
+                                data-en="Web Services" data-fr="Services Web">Web
+                                Services</span></h3>
                         <div class="skill-list">
                             <span class="skill-tag">Ghost</span>
                             <span class="skill-tag">Let's Encrypt</span>
@@ -739,8 +802,9 @@
 
                     <div class="skill-category">
                         <h3><i data-lucide="package"
-                                style="width: 16px; height: 16px; display: inline-block; margin-right: 8px;"></i>DevOps
-                            & Databases</h3>
+                                style="width: 16px; height: 16px; display: inline-block; margin-right: 8px;"></i><span
+                                data-en="DevOps & Databases" data-fr="DevOps & Bases de Données">DevOps
+                                & Databases</span></h3>
                         <div class="skill-list">
                             <span class="skill-tag">Docker</span>
                             <span class="skill-tag">Docker Compose</span>
@@ -753,14 +817,15 @@
 
                     <div class="skill-category">
                         <h3><i data-lucide="award"
-                                style="width: 16px; height: 16px; display: inline-block; margin-right: 8px;"></i>Certifications
+                                style="width: 16px; height: 16px; display: inline-block; margin-right: 8px;"></i><span
+                                data-en="Certifications" data-fr="Certifications">Certifications</span>
                         </h3>
                         <div class="skill-list">
                             <span class="skill-tag">LPIC-2</span>
                             <span class="skill-tag">cPanel CCP</span>
                             <span class="skill-tag">CCNA 3</span>
                             <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">+6 more</span>
+                            <span class="skill-tag" data-en="+6 more" data-fr="+6 autres">+6 more</span>
                         </div>
                     </div>
                 </div>
@@ -769,50 +834,85 @@
 
         <section id="experience" class="experience">
             <div class="container">
-                <h2 class="section-title">Experience</h2>
+                <h2 class="section-title" data-en="Experience" data-fr="Expérience">Experience</h2>
                 <div class="timeline">
                     <div class="timeline-item current">
-                        <div class="timeline-date">JAN 2026 - FEB 2026</div>
-                        <h3>Linux SysAdmin & DevOps Engineer</h3>
-                        <div class="timeline-company">Upwork · Remote</div>
+                        <div class="timeline-date" data-en="JAN 2026 - FEB 2026" data-fr="JAN 2026 - FÉV 2026">JAN 2026
+                            - FEB 2026</div>
+                        <h3 data-en="Linux SysAdmin & DevOps Engineer"
+                            data-fr="Administrateur Système Linux & Ingénieur DevOps">Linux SysAdmin & DevOps Engineer
+                        </h3>
+                        <div class="timeline-company" data-en="Upwork · Remote" data-fr="Upwork · Télétravail">Upwork ·
+                            Remote</div>
                         <ul>
-                            <li>Protected development website with server-level access control on Hetzner infrastructure
+                            <li data-en="Protected development website with server-level access control on Hetzner infrastructure"
+                                data-fr="Protection d'un site de développement avec contrôle d'accès au niveau serveur sur infrastructure Hetzner">
+                                Protected development website with server-level access control on Hetzner infrastructure
                             </li>
-                            <li>Recovered and configured Ghost 6.0 blog on DigitalOcean with RunCloud</li>
-                            <li>Set up Clawdbot on VPS with proper security configuration</li>
+                            <li data-en="Recovered and configured Ghost 6.0 blog on DigitalOcean with RunCloud"
+                                data-fr="Récupération et configuration d'un blog Ghost 6.0 sur DigitalOcean avec RunCloud">
+                                Recovered and configured Ghost 6.0 blog on DigitalOcean with RunCloud</li>
+                            <li data-en="Set up Clawdbot on VPS with proper security configuration"
+                                data-fr="Installation de Clawdbot sur VPS avec configuration sécurité adéquate">Set up
+                                Clawdbot on VPS with proper security configuration</li>
                         </ul>
                     </div>
 
-                    <div class="timeline-item current">
-                        <div class="timeline-date">AUG 2025 - OCT 2025</div>
-                        <h3>Cyberdefense Administrator Trainee</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date" data-en="AUG 2025 - OCT 2025" data-fr="AOÛ 2025 - OCT 2025">AUG 2025
+                            - OCT 2025</div>
+                        <h3 data-en="Cyberdefense Administrator Trainee"
+                            data-fr="Stagiaire Administrateur Cyberdéfense">Cyberdefense Administrator Trainee</h3>
                         <div class="timeline-company">DataProtect (Skillslab) · Casablanca</div>
                         <ul>
-                            <li>Managed security infrastructure including EDR, WAF, ACLs, and SWG</li>
-                            <li>Applied ISO 27001 compliance standards across security operations</li>
-                            <li>Implemented cryptographic protocols for data protection</li>
+                            <li data-en="Managed security infrastructure including EDR, WAF, ACLs, and SWG"
+                                data-fr="Gestion de l'infrastructure de sécurité incluant EDR, WAF, ACLs et SWG">Managed
+                                security infrastructure including EDR, WAF, ACLs, and SWG</li>
+                            <li data-en="Applied ISO 27001 compliance standards across security operations"
+                                data-fr="Application des normes de conformité ISO 27001 sur les opérations de sécurité">
+                                Applied ISO 27001 compliance standards across security operations</li>
+                            <li data-en="Implemented cryptographic protocols for data protection"
+                                data-fr="Implémentation de protocoles cryptographiques pour la protection des données">
+                                Implemented cryptographic protocols for data protection</li>
                         </ul>
                     </div>
 
-                    <div class="timeline-item current">
-                        <div class="timeline-date">JULY 2025</div>
-                        <h3>Cybersecurity Competitor (National Finalist)</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date" data-en="JULY 2025" data-fr="JUIL 2025">JULY 2025</div>
+                        <h3 data-en="Cybersecurity Competitor (National Finalist)"
+                            data-fr="Compétiteur en Cybersécurité (Finaliste National)">Cybersecurity Competitor
+                            (National Finalist)</h3>
                         <div class="timeline-company">WorldSkills Morocco · Casablanca</div>
                         <ul>
-                            <li>Competed in Blue/Red Team cybersecurity scenarios</li>
-                            <li>Performed real-time forensics and incident response</li>
-                            <li>Executed system hardening on Linux infrastructure</li>
+                            <li data-en="Competed in Blue/Red Team cybersecurity scenarios"
+                                data-fr="Compétition en scénarios de cybersécurité Blue/Red Team">Competed in Blue/Red
+                                Team cybersecurity scenarios</li>
+                            <li data-en="Performed real-time forensics and incident response"
+                                data-fr="Réalisation d'analyses forensiques en temps réel et réponse aux incidents">
+                                Performed real-time forensics and incident response</li>
+                            <li data-en="Executed system hardening on Linux infrastructure"
+                                data-fr="Exécution du durcissement système sur infrastructure Linux">Executed system
+                                hardening on Linux infrastructure</li>
                         </ul>
                     </div>
 
-                    <div class="timeline-item current">
-                        <div class="timeline-date">MAR 2025 - APR 2025</div>
-                        <h3>Security Testing Intern</h3>
-                        <div class="timeline-company">Court of First Instance · Khenifra</div>
+                    <div class="timeline-item">
+                        <div class="timeline-date" data-en="MAR 2025 - APR 2025" data-fr="MAR 2025 - AVR 2025">MAR 2025
+                            - APR 2025</div>
+                        <h3 data-en="Security Testing Intern" data-fr="Stagiaire en Tests de Sécurité">Security Testing
+                            Intern</h3>
+                        <div class="timeline-company" data-en="Court of First Instance · Khenifra"
+                            data-fr="Tribunal de Première Instance · Khénifra">Court of First Instance · Khenifra</div>
                         <ul>
-                            <li>Conducted comprehensive vulnerability assessments</li>
-                            <li>Identified 20+ security weaknesses in network infrastructure</li>
-                            <li>Delivered detailed remediation report with actionable recommendations</li>
+                            <li data-en="Conducted comprehensive vulnerability assessments"
+                                data-fr="Réalisation d'évaluations complètes de vulnérabilités">Conducted comprehensive
+                                vulnerability assessments</li>
+                            <li data-en="Identified 20+ security weaknesses in network infrastructure"
+                                data-fr="Identification de 20+ failles de sécurité dans l'infrastructure réseau">
+                                Identified 20+ security weaknesses in network infrastructure</li>
+                            <li data-en="Delivered detailed remediation report with actionable recommendations"
+                                data-fr="Livraison d'un rapport de remédiation détaillé avec recommandations concrètes">
+                                Delivered detailed remediation report with actionable recommendations</li>
                         </ul>
                     </div>
                 </div>
@@ -821,8 +921,10 @@
 
         <section id="contact" class="contact">
             <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                <h2 class="section-title" data-en="Get In Touch" data-fr="Me Contacter">Get In Touch</h2>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;"
+                    data-en="Available for VPS deployments, Ghost setups, and server security projects. I respond quickly and can start immediately. Open to contract-to-hire opportunities and PFE internships starting April 2026."
+                    data-fr="Disponible pour déploiements VPS, installations Ghost et projets de sécurité serveur. Je réponds rapidement et peux commencer immédiatement. Ouvert aux opportunités de contrat et stages PFE à partir d'avril 2026.">
                     Available for VPS deployments, Ghost setups, and server security projects. I respond quickly and can
                     start immediately. Open to contract-to-hire opportunities and PFE internships starting April 2026.
                 </p>
@@ -853,6 +955,28 @@
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
+
+        // Language toggle
+        const langEn = document.getElementById('lang-en');
+        const langFr = document.getElementById('lang-fr');
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-en][data-fr]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + lang);
+            });
+            if (lang === 'fr') {
+                langFr.classList.add('active');
+                langEn.classList.remove('active');
+            } else {
+                langEn.classList.add('active');
+                langFr.classList.remove('active');
+            }
+            // Re-initialize Lucide icons since textContent wipes them
+            lucide.createIcons();
+        }
+
+        langEn.addEventListener('click', () => setLanguage('en'));
+        langFr.addEventListener('click', () => setLanguage('fr'));
     </script>
 </body>
 
