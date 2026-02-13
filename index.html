@@ -99,7 +99,7 @@
         .logo::before {
             content: '> ';
             color: var(--accent-secondary);
-            animation: blink 1.5s infinite;
+            animation: blink 3s infinite;
         }
 
         @keyframes blink {
@@ -167,6 +167,7 @@
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -208,7 +209,7 @@
         }
 
         .btn {
-            padding: 0.9rem 2rem;
+            padding: 1rem 1.5rem;
             border-radius: 4px;
             text-decoration: none;
             font-weight: 600;
@@ -216,6 +217,8 @@
             transition: all 0.3s;
             display: inline-block;
             border: 2px solid;
+            position: relative;
+            min-width: 140px;
         }
 
         .btn-primary {
@@ -284,6 +287,7 @@
 
         .stat-item {
             text-align: center;
+            position: relative;
         }
 
         .stat-number {
@@ -299,6 +303,28 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        .stat-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color 0.3s;
+            position: absolute;
+            bottom: 0;
+            right: -60px;
+        }
+
+        .stat-link:hover {
+            color: var(--accent-secondary);
+        }
+
+        .stat-link i {
+            width: 14px;
+            height: 14px;
         }
 
         /* Section Title */
@@ -451,15 +477,20 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -2rem;
+            left: calc(-2rem - 5px);
             top: 0.5rem;
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--accent-primary);
-            border: 2px solid var(--bg-primary);
+            background: transparent;
+            border: 3px solid var(--accent-primary);
             z-index: 2;
             transition: all 0.3s;
+        }
+
+        .timeline-item.current::before {
+            background: var(--accent-primary);
+            border: 2px solid var(--bg-primary);
         }
 
         .timeline-item:hover::before {
@@ -588,14 +619,23 @@
                 <div class="hero-content">
                     <div class="hero-text">
                         <h1>Linux SysAdmin & DevOps Engineer</h1>
-                        <p class="tagline">$ deploying infrastructure | securing servers | automating workflows</p>
+                        <p class="tagline"><span style="color: #c15a3a;">$</span> deploying infrastructure | securing
+                            servers | automating workflows<span
+                                style="color: #c15a3a; animation: blink 3s infinite;">_</span></p>
                         <p>I help developers and startups deploy self-hosted applications on DigitalOcean without the
                             headaches. Specializing in Ghost deployments, secure VPS infrastructure, and DevOps
                             essentials with a focus on security-first practices.</p>
                         <div class="cta-buttons">
-                            <a href="https://blog.miane.tech" class="btn btn-primary" target="_blank">Read My Blog</a>
-                            <a href="assets/documents/Ayoub_Miane_CV.pdf" class="btn btn-secondary" download>Download
-                                CV</a>
+                            <a href="https://blog.miane.tech" class="btn btn-secondary" target="_blank">
+                                Read My Blog
+                            </a>
+                            <a href="https://www.upwork.com/freelancers/ayoubmiane1" class="btn btn-secondary"
+                                target="_blank">
+                                Upwork
+                            </a>
+                            <a href="assets/documents/Ayoub_Miane_CV.pdf" class="btn btn-primary" download>
+                                Download CV
+                            </a>
                         </div>
                     </div>
                     <div class="hero-image">
@@ -612,6 +652,9 @@
                 <div class="stat-item">
                     <span class="stat-number">100%</span>
                     <span class="stat-label">Job Success</span>
+                    <a href="https://www.upwork.com/freelancers/ayoubmiane1" class="stat-link" target="_blank">
+                        <i data-lucide="link"></i> Upwork
+                    </a>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">3</span>
@@ -620,10 +663,6 @@
                 <div class="stat-item">
                     <span class="stat-number">10</span>
                     <span class="stat-label">Certifications</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">30+</span>
-                    <span class="stat-label">Hrs/Week</span>
                 </div>
             </div>
         </section>
@@ -732,7 +771,7 @@
             <div class="container">
                 <h2 class="section-title">Experience</h2>
                 <div class="timeline">
-                    <div class="timeline-item">
+                    <div class="timeline-item current">
                         <div class="timeline-date">JAN 2026 - FEB 2026</div>
                         <h3>Linux SysAdmin & DevOps Engineer</h3>
                         <div class="timeline-company">Upwork · Remote</div>
@@ -744,7 +783,7 @@
                         </ul>
                     </div>
 
-                    <div class="timeline-item">
+                    <div class="timeline-item current">
                         <div class="timeline-date">AUG 2025 - OCT 2025</div>
                         <h3>Cyberdefense Administrator Trainee</h3>
                         <div class="timeline-company">DataProtect (Skillslab) · Casablanca</div>
@@ -755,7 +794,7 @@
                         </ul>
                     </div>
 
-                    <div class="timeline-item">
+                    <div class="timeline-item current">
                         <div class="timeline-date">JULY 2025</div>
                         <h3>Cybersecurity Competitor (National Finalist)</h3>
                         <div class="timeline-company">WorldSkills Morocco · Casablanca</div>
@@ -766,7 +805,7 @@
                         </ul>
                     </div>
 
-                    <div class="timeline-item">
+                    <div class="timeline-item current">
                         <div class="timeline-date">MAR 2025 - APR 2025</div>
                         <h3>Security Testing Intern</h3>
                         <div class="timeline-company">Court of First Instance · Khenifra</div>
