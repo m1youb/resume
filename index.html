@@ -561,8 +561,10 @@
             transition: color 0.3s;
         }
 
-        .contact-link i {
+        .contact-link svg {
             color: #c15a3a;
+            stroke: #c15a3a;
+            /* Ensure stroke is colored for Lucide icons */
         }
 
         .contact-link:hover {
@@ -580,32 +582,72 @@
         }
 
         /* Language Toggle */
-        .lang-switch {
+        .nav-right {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 2rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: transparent;
+            border: 2px solid var(--border-color);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 2px;
+            bottom: 2px;
+            background-color: var(--text-secondary);
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            border-color: var(--accent-primary);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(24px);
+            background-color: var(--accent-primary);
+        }
+
+        .lang-label {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
             font-weight: 600;
-        }
-
-        .lang-switch span {
-            cursor: pointer;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
             color: var(--text-secondary);
-            transition: all 0.3s;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
         }
 
-        .lang-switch span.active {
-            background: var(--accent-primary);
-            color: #fff;
-        }
-
-        .lang-switch .lang-divider {
-            color: var(--border-color);
-            cursor: default;
-            padding: 0;
+        .lang-label.active {
+            color: var(--accent-primary);
         }
 
         /* Responsive */
@@ -638,16 +680,21 @@
     <header>
         <nav class="container">
             <a href="#" class="logo">ayoub.miane</a>
-            <ul class="nav-links">
-                <li><a href="#projects" data-en="Projects" data-fr="Projets">Projects</a></li>
-                <li><a href="#skills" data-en="Skills" data-fr="Compétences">Skills</a></li>
-                <li><a href="#experience" data-en="Experience" data-fr="Expérience">Experience</a></li>
-                <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
-            </ul>
-            <div class="lang-switch">
-                <span id="lang-en" class="active">EN</span>
-                <span class="lang-divider">|</span>
-                <span id="lang-fr">FR</span>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#projects" data-en="Projects" data-fr="Projets">Projects</a></li>
+                    <li><a href="#skills" data-en="Skills" data-fr="Compétences">Skills</a></li>
+                    <li><a href="#experience" data-en="Experience" data-fr="Expérience">Experience</a></li>
+                    <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
+                </ul>
+                <div class="lang-switch" style="display: flex; align-items: center;">
+                    <span class="lang-label active" id="label-en">EN</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="lang-toggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="lang-label" id="label-fr">FR</span>
+                </div>
             </div>
         </nav>
     </header>
@@ -957,26 +1004,48 @@
         lucide.createIcons();
 
         // Language toggle
-        const langEn = document.getElementById('lang-en');
-        const langFr = document.getElementById('lang-fr');
+        const langToggle = document.getElementById('lang-toggle');
+        const labelEn = document.getElementById('label-en');
+        const labelFr = document.getElementById('label-fr');
 
         function setLanguage(lang) {
             document.querySelectorAll('[data-en][data-fr]').forEach(el => {
                 el.textContent = el.getAttribute('data-' + lang);
             });
-            if (lang === 'fr') {
-                langFr.classList.add('active');
-                langEn.classList.remove('active');
-            } else {
-                langEn.classList.add('active');
-                langFr.classList.remove('active');
-            }
+
             // Re-initialize Lucide icons since textContent wipes them
             lucide.createIcons();
+
+            // Update toggle UI
+            if (lang === 'fr') {
+                labelFr.classList.add('active');
+                labelEn.classList.remove('active');
+                langToggle.checked = true;
+            } else {
+                labelEn.classList.add('active');
+                labelFr.classList.remove('active');
+                langToggle.checked = false;
+            }
         }
 
-        langEn.addEventListener('click', () => setLanguage('en'));
-        langFr.addEventListener('click', () => setLanguage('fr'));
+        langToggle.addEventListener('change', (e) => {
+            setLanguage(e.target.checked ? 'fr' : 'en');
+        });
+
+        // Allow clicking labels to switch
+        labelEn.addEventListener('click', () => {
+            if (langToggle.checked) {
+                langToggle.checked = false;
+                setLanguage('en');
+            }
+        });
+
+        labelFr.addEventListener('click', () => {
+            if (!langToggle.checked) {
+                langToggle.checked = true;
+                setLanguage('fr');
+            }
+        });
     </script>
 </body>
 
