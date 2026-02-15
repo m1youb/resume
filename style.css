@@ -364,7 +364,7 @@ nav {
 
 .testimonial-card {
     width: 400px;
-    background: var(--bg-primary);
+    background: #D6E4D6;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 2rem;
