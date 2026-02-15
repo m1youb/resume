@@ -329,6 +329,153 @@ nav {
     font-family: 'JetBrains Mono', monospace;
 }
 
+/* Testimonials Section */
+.testimonials {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 1rem 0;
+    /* Masking for smooth edges */
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+.carousel-track {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    animation: carouselScroll 40s linear infinite;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+/* Pause on hover if desired, but user didn't ask. 
+   .carousel-track:hover { animation-play-state: paused; } 
+*/
+
+.testimonial-card {
+    width: 400px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    flex-shrink: 0;
+    transition: all 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    /* Add this */
+    color: inherit;
+    /* Add this */
+}
+
+.testimonial-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 6px 6px 0 var(--accent-secondary);
+    transform: translateY(-3px);
+}
+
+.testimonial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.stars {
+    display: flex;
+    gap: 4px;
+    color: #eab308;
+    /* Goldish for stars */
+}
+
+/* Lucide icons are SVGs */
+.stars svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    stroke: none;
+}
+
+.rating {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.testimonial-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.testimonial-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.project-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent-secondary);
+}
+
+.project-date {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+@keyframes carouselScroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-1296px);
+    }
+
+    /* Move 3 items: 3 * (400px + 32px) */
+}
+
+@media (max-width: 768px) {
+    .testimonial-card {
+        width: 300px;
+        padding: 1.5rem;
+    }
+
+    /* 300px + 2rem (32px) = 332px per item. 3 items = 996px */
+    @keyframes carouselScroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-996px);
+        }
+    }
+}
+
 /* Projects Section */
 .projects {
     padding: 6rem 0;
